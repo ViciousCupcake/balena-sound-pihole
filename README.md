@@ -27,7 +27,7 @@
 * A free [balenaCloud](https://balena.io/cloud) account
 * (Optional) The [balena CLI tools](https://github.com/balena-io/balena-cli/blob/master/INSTALL.md)
 
-## Setup and use
+## Setup and Use Guide
 
 To run this project is as simple as deploying it to a balenaCloud application; no additional configuration is required.
 
@@ -50,6 +50,46 @@ You can deploy this server with one click with the button below. Or, you can fol
 * Install the [balena CLI tools](https://github.com/balena-io/balena-cli/blob/master/INSTALL.md)
 * Login with `balena login`
 * Download this project and from the project directory run `balena push <appName>` where `<appName>` is the name you gave your balenaCloud application in the first step.
+
+### Set up your router/clients
+
+The next thing we have to handle is changing your network configuration so that all DNS requests go via your new Pi-hole device rather than through your router or ISP.
+
+tl;dr: We need to set the DNS server settings on your router or client device to point to the local IP address of Pi-hole.
+
+The main thing we need is the IP address of your new Pi-hole device. If you set this to a fixed/static IP earlier in the guide you’ll know what this is already. If not, you can find out by visiting the application or device list page in the balenaCloud dashboard.
+
+For initial testing purposes, you might want to change just one device on the network, such as your computer or laptop, to try it out. After you’re happy with how things are running, you can deploy network-wide by changing the settings on your router or DHCP server to point all devices/clients on your network to Pi-hole automatically. Dynamic Host Configuration Protocol (DHCP) is a method used on a lot of networks to automatically set up computers, smartphones and other devices with the correct network settings as soon as they connect. By default, your router will issue DNS settings pointing either to the router itself or to your ISP; we’re going to change that so that your DNS settings will point to Pi-hole in order for it to filter the requests before they reach your computer.
+
+On your router, look for anything relating to DHCP and the associated options. You’re looking for a screen similar to that below. If you’re not sure what you’re doing, make a note or take a screenshot before changing anything so you can revert the settings if you make a mistake.
+![](https://www.balena.io/blog/content/images/2019/01/pfsense-dns.png)
+
+#### Windows
+
+In Windows, you can access the DNS settings for a connection by first locating the connection status, then going to properties, and then highlighting Internet Protocol Version 4 (TCP/IPv4) and clicking properties again, as in the screenshot below. Different versions of Window may look slightly different but the principle is always the same.
+![](https://www.balena.io/blog/content/images/2019/01/windows-dns.png)
+
+#### macOS
+
+Within macOS, find System Preferences, and then open the Network pane. The left hand column will show all of your network interfaces; select the one that you’re using and is connected, and then click on the Advanced button, which will bring up a panel similar to that below where you can choose the DNS tab and enter the IP address of Pi-hole on your network manually.
+![](https://www.balena.io/blog/content/images/2019/01/macos-dns.png)
+
+#### iOS
+
+When using iOS, go to Settings > Wi-Fi and tap on the i to the right of the network you’re connected to. This opens a new page where you can tap on Configure DNS to reach the screen below:
+![](https://www.balena.io/blog/content/images/2019/01/ios-dns.png)
+
+#### Android
+
+When using an Android device, the method used to change the DNS settings varies depending on the version. OpenDNS has [a guide](https://support.opendns.com/hc/en-us/articles/228009007-Android-Configuration-instructions-for-OpenDNS) to doing this, just remember to use your own Pi-hole IP address rather than the OpenDNS ones.
+
+#### Other
+
+Pi-hole also have an [extensive forum thread](https://discourse.pi-hole.net/t/how-do-i-configure-my-devices-to-use-pi-hole-as-their-dns-server/245) telling you how to set this up for various devices and operating systems.
+
+### Pi-hole Dashboard
+
+You can access the web interface if you’re on the same network by visiting the local IP address of your new device in a browser. If you don’t know the IP of your device, the easiest way to find it is on the [balenaCloud dashboard](https://dashboard.balena-cloud.com/apps).
 
 # Documentation 
 
@@ -99,3 +139,5 @@ To edit, navigate to dashboard -> your app -> Environment variables.
 * <https://github.com/balenalabs/balena-sound>
 * <https://github.com/pi-hole/docker-pi-hole/>
 * <https://github.com/DNSCrypt/dnscrypt-proxy>
+* <https://sound.balenalabs.io/docs/customizations/>
+* <https://www.balena.io/blog/deploy-network-wide-ad-blocking-with-pi-hole-and-a-raspberry-pi/>
