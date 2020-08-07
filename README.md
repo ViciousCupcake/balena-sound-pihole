@@ -79,6 +79,7 @@ Within macOS, find System Preferences, and then open the Network pane. The left 
 #### iOS
 
 When using iOS, go to Settings > Wi-Fi and tap on the i to the right of the network you’re connected to. This opens a new page where you can tap on Configure DNS to reach the screen below:
+
 ![](https://www.balena.io/blog/content/images/2019/01/ios-dns.png)
 
 #### Android
