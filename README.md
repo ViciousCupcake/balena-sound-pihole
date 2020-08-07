@@ -13,7 +13,8 @@
 
 ## Hardware required
 
-* Raspberry Pi 3A+/3B/3B+/4B with microSD card
+* Raspberry Pi 3A+/3B/3B+/4B
+* microSD card
 * Power supply
 * Router (No need for a dedicated router, it can be the same one as your personal router)
 * Speaker System
@@ -26,11 +27,11 @@
 * A free [balenaCloud](https://balena.io/cloud) account
 * (Optional) The [balena CLI tools](https://github.com/balena-io/balena-cli/blob/master/INSTALL.md)
 
-## Setup and use :stars:
+## Setup and use
 
 To run this project is as simple as deploying it to a balenaCloud application; no additional configuration is required.
 
-### Setup the Raspberry Pi :cd:
+### Setup the Raspberry Pi
 
 * Sign up for or login to the [balenaCloud dashboard](https://dashboard.balena-cloud.com)
 * Create an application, selecting the correct device type for your Raspberry Pi
@@ -87,14 +88,8 @@ To edit, navigate to dashboard -> your app -> Environment variables.
 |---|---|---|
 |`DEVICE_NAME`|`My balenaSound/pihole combo!`|By default, your device will be named balenaSound xxxx. This name will show within Airplay device lists, for Spotify Connect, and when searching for devices using Bluetooth.|
 |`SYSTEM_OUTPUT_VOLUME`|`80`|By default, balenaSound will set the output volume of your Raspberry Pi to 75% on the basis you can then control the volume upto the maximum from the connected bluetooth device. You can edit the default volume through this variable|
-|`DISABLE_MULTI_ROOM`|`1`|By default, balenaSound will start in multi-room mode. When running multi-room you can stream audio into a fleet of devices and have it play perfectly synchronized. It does not matter wether you have 2 or 100 devices, you only need them to be part of the same local network.
-
-If you don't want to use multi-room or you only have one device, you can disable it by creating the DISABLE_MULTI_ROOM variable (with any value, for example: 1).
-
-Note: Multi-room requires a network router that supports IP multicast/broadcast (most modern routers do).|
-|`BLUETOOTH_PIN_CODE`|`123456`|By default, balenaSound bluetooth will connect using Secure Simple Pairing mode. If you would like to override this and use Legacy Mode with a PIN code you can do it by defining the BLUETOOTH_PIN_CODE environment variable. The PIN code must be numeric and up to six digits (1 - 999999).
-
-Note: Legacy Mode is no longer allowed on iOS devices.|
+|`DISABLE_MULTI_ROOM`|`1`|By default, balenaSound will start in multi-room mode. When running multi-room you can stream audio into a fleet of devices and have it play perfectly synchronized. It does not matter wether you have 2 or 100 devices, you only need them to be part of the same local network.<br/><br/>If you don't want to use multi-room or you only have one device, you can disable it by creating the DISABLE_MULTI_ROOM variable (with any value, for example: 1).<br/><br/>Note: Multi-room requires a network router that supports IP multicast/broadcast (most modern routers do).|
+|`BLUETOOTH_PIN_CODE`|`123456`|By default, balenaSound bluetooth will connect using Secure Simple Pairing mode. If you would like to override this and use Legacy Mode with a PIN code you can do it by defining the BLUETOOTH_PIN_CODE environment variable. The PIN code must be numeric and up to six digits (1 - 999999).<br/><br/>Note: Legacy Mode is no longer allowed on iOS devices.|
 |`SPOTIFY_LOGIN`|`MyUsernameForSpotify`|Spotify Connect only works with Spotify Premium accounts (due to the use of the librespot library). If you have a Spotify Premium account, you can stream locally without any configuration. If you want to use Spotify Connect over the internet, you'll need to provide your Spotify credentials. To enable Spotify login you can add your username/e-mail and password|
 |`SPOTIFY_PASSWORD`|`MyPasswordForSpotify`|See above.|
 
