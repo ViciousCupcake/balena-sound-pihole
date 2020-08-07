@@ -2,3 +2,6 @@ applicationEnvironmentVariables:
     - TZ: 'America/Toronto'
     - DNSMASQ_LISTENING: 'eth0'
     - INTERFACE: 'eth0'
+    - DEVICE_NAME: 'My Raspberry Pi'
+    - DNS1: '8.8.8.8'
+    - DNS2: '8.8.4.4'
