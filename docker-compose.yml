@@ -1,0 +1,88 @@
+version: '2'
+services:
+  bluetooth-audio:
+    build: ./bluetooth-audio
+    restart: on-failure
+    network_mode: host
+    privileged: true
+    labels:
+      io.balena.features.dbus: 1
+    volumes:
+      - bluetoothcache:/var/cache/bluetooth
+      - snapcast:/var/cache/snapcast
+  airplay:
+    build: ./airplay
+    restart: on-failure
+    network_mode: host
+    privileged: true
+    labels:
+      io.balena.features.dbus: 1
+    volumes:
+      - snapcast:/var/cache/snapcast
+  spotify:
+    build: ./spotify
+    restart: on-failure
+    network_mode: host
+    privileged: true
+    volumes:
+      - spotifycache:/var/cache/raspotify
+      - snapcast:/var/cache/snapcast
+  fleet-supervisor:
+    build: ./fleet-supervisor
+    restart: on-failure
+    network_mode: host
+    privileged: true
+    ports:
+      - 3000:3000
+    labels:
+      io.balena.features.supervisor-api: 1
+  snapcast-server:
+    build: 
+      context: ./snapcast-server
+    restart: on-failure
+    ports:
+      - 1704:1704
+      - 1705:1705
+    volumes:
+      - snapcast:/var/cache/snapcast
+  snapcast-client:
+    build: 
+      context: ./snapcast-client
+    restart: on-failure 
+    network_mode: host 
+    privileged: true
+    volumes:
+      - snapcast:/var/cache/snapcast
+  upnp:
+    build: ./upnp
+    restart: on-failure 
+    network_mode: host 
+    ports:
+      - 49494:49494
+    volumes:
+      - snapcast:/var/cache/snapcast
+  pihole:
+    build: ./pihole
+    privileged: true
+    volumes:
+      - 'pihole_config:/etc/pihole'
+      - 'dnsmasq_config:/etc/dnsmasq.d'
+    dns:
+      - '127.0.0.1'
+      - '1.1.1.1'
+    network_mode: host
+
+  # set pihole DNS1 and DNS2 service variables to 127.0.0.1#5053 to use dnscrypt-proxy for upstream DNS
+  dnscrypt-proxy:
+    build: ./dnscrypt-proxy
+    volumes:
+      - 'dnscrypt_config:/config'
+    ports:
+      - '5053:5053/udp'
+volumes:
+  spotifycache:
+  bluetoothcache:
+  snapcast:
+  pihole_config:
+  dnsmasq_config:
+  dnscrypt_config:
