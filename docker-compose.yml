@@ -1,4 +1,5 @@
 version: '2'
+
 services:
   bluetooth-audio:
     build: ./bluetooth-audio
@@ -10,6 +11,7 @@ services:
     volumes:
       - bluetoothcache:/var/cache/bluetooth
       - snapcast:/var/cache/snapcast
+
   airplay:
     build: ./airplay
     restart: on-failure
@@ -19,6 +21,7 @@ services:
       io.balena.features.dbus: 1
     volumes:
       - snapcast:/var/cache/snapcast
+
   spotify:
     build: ./spotify
     restart: on-failure
@@ -27,6 +30,7 @@ services:
     volumes:
       - spotifycache:/var/cache/raspotify
       - snapcast:/var/cache/snapcast
+
   fleet-supervisor:
     build: ./fleet-supervisor
     restart: on-failure
@@ -36,6 +40,7 @@ services:
       - 3000:3000
     labels:
       io.balena.features.supervisor-api: 1
+
   snapcast-server:
     build: 
       context: ./snapcast-server
@@ -45,6 +50,7 @@ services:
       - 1705:1705
     volumes:
       - snapcast:/var/cache/snapcast
+
   snapcast-client:
     build: 
       context: ./snapcast-client
@@ -53,6 +59,7 @@ services:
     privileged: true
     volumes:
       - snapcast:/var/cache/snapcast
+
   upnp:
     build: ./upnp
     restart: on-failure 
@@ -61,6 +68,7 @@ services:
       - 49494:49494
     volumes:
       - snapcast:/var/cache/snapcast
+
   pihole:
     build: ./pihole
     privileged: true
@@ -79,6 +87,7 @@ services:
       - 'dnscrypt_config:/config'
     ports:
       - '5053:5053/udp'
+      
 volumes:
   spotifycache:
   bluetoothcache:
