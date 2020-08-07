@@ -57,7 +57,7 @@ The next thing we have to handle is changing your network configuration so that 
 
 tl;dr: We need to set the DNS server settings on your router or client device to point to the local IP address of Pi-hole.
 
-The main thing we need is the IP address of your new Pi-hole device. If you set this to a fixed/static IP earlier in the guide you’ll know what this is already. If not, you can find out by visiting the application or device list page in the balenaCloud dashboard.
+The main thing we need is the IP address of your new Pi-hole device. If you set this to a fixed/static IP earlier in the guide you’ll know what this is already. If not, you can find out by visiting the application or device list page in the [balenaCloud dashboard](https://dashboard.balena-cloud.com/apps).
 
 For initial testing purposes, you might want to change just one device on the network, such as your computer or laptop, to try it out. After you’re happy with how things are running, you can deploy network-wide by changing the settings on your router or DHCP server to point all devices/clients on your network to Pi-hole automatically. Dynamic Host Configuration Protocol (DHCP) is a method used on a lot of networks to automatically set up computers, smartphones and other devices with the correct network settings as soon as they connect. By default, your router will issue DNS settings pointing either to the router itself or to your ISP; we’re going to change that so that your DNS settings will point to Pi-hole in order for it to filter the requests before they reach your computer.
 
@@ -81,6 +81,8 @@ Within macOS, find System Preferences, and then open the Network pane. The left 
 When using iOS, go to Settings > Wi-Fi and tap on the i to the right of the network you’re connected to. This opens a new page where you can tap on Configure DNS to reach the screen below:
 
 ![](https://www.balena.io/blog/content/images/2019/01/ios-dns.png)
+
+Select Manual, and remove any preexisting DNS Servers and replace them with the IP of your pi-hole. (This can be found in your [dashboard](https://dashboard.balena-cloud.com/apps))
 
 #### Android
 
