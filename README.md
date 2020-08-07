@@ -61,6 +61,8 @@ The main thing we need is the IP address of your new Pi-hole device. If you set 
 
 For initial testing purposes, you might want to change just one device on the network, such as your computer or laptop, to try it out. After you’re happy with how things are running, you can deploy network-wide by changing the settings on your router or DHCP server to point all devices/clients on your network to Pi-hole automatically. Dynamic Host Configuration Protocol (DHCP) is a method used on a lot of networks to automatically set up computers, smartphones and other devices with the correct network settings as soon as they connect. By default, your router will issue DNS settings pointing either to the router itself or to your ISP; we’re going to change that so that your DNS settings will point to Pi-hole in order for it to filter the requests before they reach your computer.
 
+#### Router
+
 On your router, look for anything relating to DHCP and the associated options. You’re looking for a screen similar to that below. If you’re not sure what you’re doing, make a note or take a screenshot before changing anything so you can revert the settings if you make a mistake.
 ![](https://www.balena.io/blog/content/images/2019/01/pfsense-dns.png)
 
