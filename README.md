@@ -1,4 +1,4 @@
-![Logo](images/logo.png)
+![Logo](images/logo.PNG)
 
 **Project enabling you to add multi-room audio streaming via Bluetooth, Airplay or Spotify Connect to any old speakers or Hi-Fi as well as network-wide ad blocking using just a Raspberry Pi.**
 
@@ -83,6 +83,8 @@ To edit, navigate to dashboard -> your app -> Environment variables.
 |`ServerIP`|`x.x.x.x`|_(recommended)_ Set to your server's LAN IP, used by web block modes and lighttpd bind address.|
 
 **balenaSound**
+|Name|Example|Purpose|
+|---|---|---|
 |`DEVICE_NAME`|`My balenaSound/pihole combo!`|By default, your device will be named balenaSound xxxx. This name will show within Airplay device lists, for Spotify Connect, and when searching for devices using Bluetooth.|
 |`SYSTEM_OUTPUT_VOLUME`|`80`|By default, balenaSound will set the output volume of your Raspberry Pi to 75% on the basis you can then control the volume upto the maximum from the connected bluetooth device. You can edit the default volume through this variable|
 |`DISABLE_MULTI_ROOM`|`1`|By default, balenaSound will start in multi-room mode. When running multi-room you can stream audio into a fleet of devices and have it play perfectly synchronized. It does not matter wether you have 2 or 100 devices, you only need them to be part of the same local network.
